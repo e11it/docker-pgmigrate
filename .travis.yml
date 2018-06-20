@@ -1,0 +1,13 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t urbica/pgmigrate .
+  - docker run -d --name pgmigrate urbica/pgmigrate
+
+script:
+  - docker ps | grep -q pgmigrate
